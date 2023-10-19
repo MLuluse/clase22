@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 22</title>
+</head>
+<body>
+
+    <from>
+        email: <input type="text" id="email">
+        Password: <input type="text" id="password">
+    </from>
+    <button id="login" >Iniciar sesiòn</button>
+
+    <script>
+        document.getElementById('login').onclick = async e => {
+            const email = document.getElementById('email').value
+            const password = document.getElementById('password').value
+            const body = {email, password}
+            const result =  await fetch ('/jwt/login', {
+                method: 'POST',
+                body: JSON.stringify(body),
+                headers:{
+                    "Content-Type": "application/json"
+                }
+            })
+            const response = await result.json()
+            console.log(response)
+        }
+    </script>
+
+</body>
+</html>
